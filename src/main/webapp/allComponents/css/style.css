@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-brand {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.name {
+    color: olivedrab;
+    font-size: larger;
+}
+
+.navbar .nav-item .nav-link {
+    color: white;
+    margin: 0 1rem;
+    border-radius: 8px;
+}
+
+.navbar .nav-item .nav-link:hover {
+    background-color: #00bfa5;
+    color: white;
+}
+
+.authSection .loginBtn {
+    margin-right: 0.2rem;
+}

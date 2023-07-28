@@ -3,8 +3,8 @@
 <div class="container-fluid" style="background-color: #a7ffeb">
     <div class="header row">
         <div class="col-md-2">
-            <a class="navbar-brand" href="#">
-                <img src="images/logo.png" alt="" width="50" height="50">
+            <a class="navbar-brand" href="Main">
+                <img src="images/logo.png" alt="logo" width="50" height="50">
                 <span class="name">Bookasaurus</span>
             </a>
         </div>
@@ -15,8 +15,8 @@
             </form>
         </div>
         <div class="col-md-4 text-end authSection">
-            <a class="btn btn-success loginBtn" href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Войти</a>
-            <a class="btn btn-success registerBtn" href="#"><i class="fa-solid fa-user-plus"></i> Зарегистрироваться</a>
+            <a class="btn btn-success loginBtn" href="Login"><i class="fa-solid fa-arrow-right-from-bracket"></i> Войти</a>
+            <a class="btn btn-success registerBtn" href="Register"><i class="fa-solid fa-user-plus"></i> Зарегистрироваться</a>
         </div>
     </div>
 </div>

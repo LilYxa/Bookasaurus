@@ -4,6 +4,8 @@ log/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+.env
+
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml

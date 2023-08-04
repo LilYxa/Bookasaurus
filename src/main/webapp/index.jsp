@@ -1,3 +1,5 @@
+<%@ page import="java.sql.Connection" %>
+<%@ page import="com.bookasaurus.DB.DBConnect" %>
 <%--
   Created by IntelliJ IDEA.
   User: ilia

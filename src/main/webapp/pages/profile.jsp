@@ -13,10 +13,33 @@
     <title>Домашняя страница</title>
 </head>
 <body>
+
+    <%
+        boolean userFound = false;
+
+        Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("user")) {
+					userFound = true;
+					break;
+                }
+            }
+        }
+
+		if (userFound) {
+    %>
+
     <h1>Домашняя страница пользователя</h1>
     <c:if test="${not empty userObj}">
         <h1>Имя: ${userObj.name}</h1>
         <h1>Электронная почта: ${userObj.email}</h1>
     </c:if>
+
+    <%
+        } else {
+			response.sendRedirect("Login");
+        }
+    %>
 </body>
 </html>

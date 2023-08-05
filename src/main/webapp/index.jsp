@@ -22,7 +22,7 @@
         }
 
         .heading {
-            color: #50814c;
+            color: #00796b;
         }
 
         .card-hover:hover {

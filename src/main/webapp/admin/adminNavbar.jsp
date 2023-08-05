@@ -28,20 +28,7 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="Main"><i class="fa-solid fa-house-chimney"></i> Главная</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa-solid fa-book-bookmark"></i> Недавние</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa-solid fa-book"></i> Новые</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa-solid fa-book-open"></i> Старые</a>
-                </li>
             </ul>
         </div>
-        <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-light my-2 my-sm-0"><i class="fa-solid fa-gear fa-spin"></i> Настройки</button>
-            <button class="btn btn-light my-2 my-sm-0"><i class="fa-solid fa-address-book"></i> Связаться с нами</button>
-        </form>
     </div>
 </nav>

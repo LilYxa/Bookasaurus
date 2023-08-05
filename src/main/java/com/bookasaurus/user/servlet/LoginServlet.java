@@ -34,9 +34,9 @@ public class LoginServlet extends HttpServlet {
 				User user = dao.login(email, password);
 				if (user != null) {
 					session.setAttribute("userObj", user);
-//					Cookie cookie = new Cookie("user", user.getName());
-//					cookie.setMaxAge(3600);
-//					response.addCookie(cookie);
+					Cookie cookie = new Cookie("user", user.getName());
+					cookie.setMaxAge(3600);
+					response.addCookie(cookie);
 					response.sendRedirect("Profile");
 				} else {
 					session.setAttribute("failedMsg", "Проверьте правильность введенных данных!");

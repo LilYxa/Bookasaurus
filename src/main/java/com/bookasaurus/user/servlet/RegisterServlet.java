@@ -6,6 +6,7 @@ import com.bookasaurus.entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.IOException;
 
@@ -24,11 +25,15 @@ public class RegisterServlet extends HttpServlet {
 			String password = request.getParameter("password");
 			String check = request.getParameter("check");
 
-			//System.out.println(name + " " + email + " " + password);
 			User user = new User();
 			user.setName(name);
 			user.setEmail(email);
-			user.setPassword(password);
+
+			String salt = "lkhbhfyt123f" + email;
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			String hashedPass = encoder.encode(salt + password);
+
+			user.setPassword(hashedPass);
 
 			HttpSession session = request.getSession();
 
@@ -36,16 +41,13 @@ public class RegisterServlet extends HttpServlet {
 				UserDAOImpl dao = new UserDAOImpl(DBConnect.getConnection());
 				boolean flag = dao.userRegister(user);
 				if (flag) {
-//					System.out.println("User was added");
 					session.setAttribute("successMsg", "Пользователь успешно зарегистрирован!");
 					response.sendRedirect("Register");
 				} else {
-//					System.out.println("Error!!!");
 					session.setAttribute("failedMsg", "Что-то пошло не так...");
 					response.sendRedirect("Register");
 				}
 			} else {
-//				System.out.println("Check Agree Condition!");
 				session.setAttribute("failedMsg", "Пожалйуста, проверьте согласие на обработку данных!");
 				response.sendRedirect("Register");
 			}

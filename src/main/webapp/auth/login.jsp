@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page isELIgnored="false" %>
 <html>
 <head>
     <title>Войти</title>
@@ -20,14 +22,20 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="text-center">Авторизация</h3>
-                        <form>
+
+                        <c:if test="${not empty failedMsg}">
+                            <p class="text-center text-danger">${failedMsg}</p>
+                            <c:remove var="failedMsg" scope="session"/>
+                        </c:if>
+
+                        <form action="LoginServlet" method="post">
                             <div class="mb-3">
                                 <label for="InputEmail" class="form-label">Электронная почта</label>
-                                <input type="email" class="form-control" id="InputEmail" required>
+                                <input type="email" class="form-control" id="InputEmail" name="email" required>
                             </div>
                             <div class="mb-3">
                                 <label for="InputPassword" class="form-label">Пароль</label>
-                                <input type="password" class="form-control" id="InputPassword" required>
+                                <input type="password" class="form-control" id="InputPassword" name="password" required>
                             </div>
                             <button type="submit" class="btn btn-success w-100 mb-2">Войти</button>
                             <div class="text-center">

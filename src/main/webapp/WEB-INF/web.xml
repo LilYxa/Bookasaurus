@@ -31,4 +31,22 @@
         <url-pattern>/Login</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Profile</servlet-name>
+        <jsp-file>/pages/profile.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Profile</servlet-name>
+        <url-pattern>/Profile</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdminPanel</servlet-name>
+        <jsp-file>/admin/adminHome.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminPanel</servlet-name>
+        <url-pattern>/Admin</url-pattern>
+    </servlet-mapping>
+
 </web-app>

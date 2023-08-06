@@ -40,7 +40,7 @@
     <div class="container">
         <div class="row p-5">
             <div class="col-md-3">
-                <a href="#" class="addBook">
+                <a href="Add_book" class="addBook">
                     <div class="card">
                         <div class="card-body text-center">
                             <i class="fa-solid fa-square-plus fa-3x text-success"></i><br>
@@ -52,7 +52,7 @@
             </div>
 
             <div class="col-md-3">
-                <a href="#" class="allBooks">
+                <a href="All_books" class="allBooks">
                     <div class="card">
                         <div class="card-body text-center">
                             <i class="fa-solid fa-book fa-3x text-warning"></i><br>
@@ -64,7 +64,7 @@
             </div>
 
             <div class="col-md-3">
-                <a href="#" class="orders">
+                <a href="Orders" class="orders">
                     <div class="card">
                         <div class="card-body text-center">
                             <i class="fa-solid fa-cart-shopping fa-3x text-primary"></i><br>
@@ -88,6 +88,8 @@
             </div>
         </div>
     </div>
+
+    <%@include file="/allComponents/footer.jsp"%>
 
 </body>
 </html>

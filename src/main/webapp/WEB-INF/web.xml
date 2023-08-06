@@ -48,5 +48,32 @@
         <servlet-name>AdminPanel</servlet-name>
         <url-pattern>/Admin</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AddBook</servlet-name>
+        <jsp-file>/admin/pages/add_book.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddBook</servlet-name>
+        <url-pattern>/Add_book</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AllBooks</servlet-name>
+        <jsp-file>/admin/pages/all_books.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AllBooks</servlet-name>
+        <url-pattern>/All_books</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Orders</servlet-name>
+        <jsp-file>/admin/pages/orders.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Orders</servlet-name>
+        <url-pattern>/Orders</url-pattern>
+    </servlet-mapping>
 
 </web-app>

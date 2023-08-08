@@ -4,12 +4,44 @@ import com.bookasaurus.entity.Book;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookDAOImpl implements BookDAO {
 	private Connection connection;
 
 	public BookDAOImpl(Connection connection) {
 		this.connection = connection;
+	}
+
+	@Override
+	public List<Book> getAllBooks() {
+		List<Book> books = new ArrayList<Book>();
+		Book book = null;
+
+		try {
+			String sql = "SELECT * FROM books";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				book = new Book();
+				book.setBookId(resultSet.getInt(1));
+				book.setBookName(resultSet.getString(2));
+				book.setAuthor(resultSet.getString(3));
+				book.setPrice(resultSet.getString(4));
+				book.setBookCategory(resultSet.getString(5));
+				book.setStatus(resultSet.getString(6));
+				book.setPhoto(resultSet.getString(7));
+				book.setEmail(resultSet.getString(8));
+
+				books.add(book);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return books;
 	}
 
 	@Override

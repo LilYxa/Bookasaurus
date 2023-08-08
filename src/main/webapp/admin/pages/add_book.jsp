@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/allComponents/allCss.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page isELIgnored="false" %>
 <html>
 <head>
     <title>Добавить книгу</title>
@@ -19,7 +21,18 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="text-center">Добавить книгу</h3>
-                        <form action="" method="post" enctype="multipart/form-data">
+
+                        <c:if test="${not empty successMsg}">
+                            <p class="text-center text-success">${successMsg}</p>
+                            <c:remove var="successMsg" scope="session"/>
+                        </c:if>
+
+                        <c:if test="${not empty failedMsg}">
+                            <p class="text-center text-danger">${failedMsg}</p>
+                            <c:remove var="failedMsg" scope="session"/>
+                        </c:if>
+
+                        <form action="BookAdd" method="post" enctype="multipart/form-data">
                             <div class="form-group mb-3">
                                 <label for="bookName">Название книги</label>
                                 <input type="text" class="form-control" name="bookName" id="bookName">

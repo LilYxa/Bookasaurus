@@ -7,12 +7,10 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-import java.io.File;
 import java.io.IOException;
 
-@WebServlet(name = "BookAdd", value = "/BookAdd")
-@MultipartConfig
-public class BookAdd extends HttpServlet {
+@WebServlet(name = "EditBook", value = "/EditBook")
+public class EditBookServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -21,35 +19,31 @@ public class BookAdd extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			int id = Integer.parseInt(request.getParameter("bookId"));
 			String bookName = request.getParameter("bookName");
 			String author = request.getParameter("author");
 			String price = request.getParameter("price");
-			String category = request.getParameter("category");
 			String status = request.getParameter("state");
-			Part part = request.getPart("photo");
-			String fileName = part.getSubmittedFileName();
 
-			Book book = new Book(bookName, author, price, category, status, fileName, "admin");
+			Book book = new Book();
+			book.setBookId(id);
+			book.setBookName(bookName);
+			book.setAuthor(author);
+			book.setPrice(price);
+			book.setStatus(status);
 
 			BookDAOImpl dao = new BookDAOImpl(DBConnect.getConnection());
-
-			boolean res = dao.addBook(book);
+			boolean f = dao.updateBook(book);
 
 			HttpSession session = request.getSession();
-			if (res) {
-				String path = getServletContext().getRealPath("") + "books";
 
-				File file = new File(path);
-
-				part.write(path + File.separator + fileName);
-
-				session.setAttribute("successMsg", "Книга успешно добавлена!");
-				response.sendRedirect("Add_book");
+			if (f) {
+				session.setAttribute("successMsg", "Книга успешно изменена");
+				response.sendRedirect("All_books");
 			} else {
 				session.setAttribute("failedMsg", "Что-то пошло не так...");
-				response.sendRedirect("Add_book");
+				response.sendRedirect("All_books");
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -75,5 +75,14 @@
         <servlet-name>Orders</servlet-name>
         <url-pattern>/Orders</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>EditBooks</servlet-name>
+        <jsp-file>/admin/pages/edit_books.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditBooks</servlet-name>
+        <url-pattern>/Edit_books</url-pattern>
+    </servlet-mapping>
 
 </web-app>

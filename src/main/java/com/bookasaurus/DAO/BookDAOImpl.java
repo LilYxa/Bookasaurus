@@ -70,4 +70,71 @@ public class BookDAOImpl implements BookDAO {
 
 		return flag;
 	}
+
+	@Override
+	public Book getBookById(int id) {
+		Book book = null;
+		try {
+			String sql = "SELECT * FROM books WHERE book_id = ?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, id);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				book = new Book();
+				book.setBookId(resultSet.getInt(1));
+				book.setBookName(resultSet.getString(2));
+				book.setAuthor(resultSet.getString(3));
+				book.setPrice(resultSet.getString(4));
+				book.setBookCategory(resultSet.getString(5));
+				book.setStatus(resultSet.getString(6));
+				book.setPhoto(resultSet.getString(7));
+				book.setEmail(resultSet.getString(8));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return book;
+	}
+
+	@Override
+	public boolean updateBook(Book book) {
+		boolean f = false;
+		try {
+			String sql = "UPDATE books SET book_name = ?, author = ?, price = ?, status = ? WHERE book_id = ?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, book.getBookName());
+			preparedStatement.setString(2, book.getAuthor());
+			preparedStatement.setString(3, book.getPrice());
+			preparedStatement.setString(4, book.getStatus());
+			preparedStatement.setInt(5, book.getBookId());
+
+			int res = preparedStatement.executeUpdate();
+
+			if (res == 1) {
+				f = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return f;
+	}
+
+	@Override
+	public boolean deleteBook(int id) {
+		boolean f = false;
+		try {
+			String sql = "DELETE FROM books WHERE book_id = ?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, id);
+
+			int res = preparedStatement.executeUpdate();
+			if (res == 1) {
+				f = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return f;
+	}
 }

@@ -10,6 +10,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/allComponents/allCss.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page isELIgnored="false" %>
 <html>
 <head>
     <title>Все книги</title>
@@ -23,6 +25,17 @@
     <%@include file="/admin/adminNavbar.jsp"%>
 
     <h3 class="text-center">Все книги</h3>
+
+    <c:if test="${not empty successMsg}">
+        <h5 class="text-center text-success">${successMsg}</h5>
+        <c:remove var="successMsg" scope="session"/>
+    </c:if>
+
+    <c:if test="${not empty failedMsg}">
+        <h5 class="text-center text-danger">${failedMsg}</h5>
+        <c:remove var="failedMsg" scope="session"/>
+    </c:if>
+
     <table class="table table-striped">
         <thead class="bg-success text-white">
         <tr>
@@ -53,8 +66,8 @@
             <td><%=book.getBookCategory()%></td>
             <td><%=book.getStatus()%></td>
             <td>
-                <a href="#" class="btn-sm btn-primary">Изменить</a>
-                <a href="#" class="btn-sm btn-danger">Удалить</a>
+                <a href="Edit_books?bookId=<%=book.getBookId()%>" class="btn-sm btn-primary">Изменить</a>
+                <a href="DeleteBook?bookId=<%=book.getBookId()%>" class="btn-sm btn-danger">Удалить</a>
             </td>
         </tr>
         <%

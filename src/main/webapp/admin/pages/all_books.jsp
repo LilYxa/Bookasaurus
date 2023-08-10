@@ -22,7 +22,11 @@
     </style>
 </head>
 <body>
-    <%@include file="/admin/adminNavbar.jsp"%>
+    <%@include file="/admin/Components/adminNavbar.jsp"%>
+
+    <c:if test="${empty userObj}">
+        <c:redirect url="Login"/>
+    </c:if>
 
     <h3 class="text-center">Все книги</h3>
 
@@ -66,8 +70,8 @@
             <td><%=book.getBookCategory()%></td>
             <td><%=book.getStatus()%></td>
             <td>
-                <a href="Edit_books?bookId=<%=book.getBookId()%>" class="btn-sm btn-primary">Изменить</a>
-                <a href="DeleteBook?bookId=<%=book.getBookId()%>" class="btn-sm btn-danger">Удалить</a>
+                <a href="Edit_books?bookId=<%=book.getBookId()%>" class="btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i> Изменить</a>
+                <a href="DeleteBook?bookId=<%=book.getBookId()%>" class="btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Удалить</a>
             </td>
         </tr>
         <%

@@ -14,7 +14,12 @@
     <title>Добавить книгу</title>
 </head>
 <body style="background-color: #f0f2f2">
-    <%@include file="/admin/adminNavbar.jsp"%>
+    <%@include file="/admin/Components/adminNavbar.jsp"%>
+
+    <c:if test="${empty userObj}">
+        <c:redirect url="Login"/>
+    </c:if>
+
     <div class="container p-3">
         <div class="row">
             <div class="col-md-4 offset-md-4">

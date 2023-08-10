@@ -24,8 +24,13 @@
                         <h3 class="text-center">Авторизация</h3>
 
                         <c:if test="${not empty failedMsg}">
-                            <p class="text-center text-danger">${failedMsg}</p>
+                            <h5 class="text-center text-danger">${failedMsg}</h5>
                             <c:remove var="failedMsg" scope="session"/>
+                        </c:if>
+
+                        <c:if test="${not empty successMsg}">
+                            <h5 class="text-center text-success">${successMsg}</h5>
+                            <c:remove var="successMsg" scope="session"/>
                         </c:if>
 
                         <form action="LoginServlet" method="post">

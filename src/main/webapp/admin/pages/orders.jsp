@@ -7,6 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/allComponents/allCss.jsp"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page isELIgnored="false" %>
 <html>
 <head>
     <title>Заказы</title>
@@ -17,7 +20,11 @@
     </style>
 </head>
 <body>
-<%@include file="/admin/adminNavbar.jsp"%>
+<%@include file="/admin/Components/adminNavbar.jsp"%>
+
+<c:if test="${empty userObj}">
+    <c:redirect url="Login"/>
+</c:if>
 
 <h3 class="text-center">Заказы</h3>
 <table class="table table-striped">

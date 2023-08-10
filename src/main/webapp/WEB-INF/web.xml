@@ -42,7 +42,7 @@
 
     <servlet>
         <servlet-name>AdminPanel</servlet-name>
-        <jsp-file>/admin/adminHome.jsp</jsp-file>
+        <jsp-file>/admin/Components/adminHome.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminPanel</servlet-name>

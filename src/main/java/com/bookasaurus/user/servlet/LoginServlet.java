@@ -28,7 +28,12 @@ public class LoginServlet extends HttpServlet {
 
             if ("admin@gmail.com".equals(email) && "admin".equals(password)) {
 				User user = new User();
+				user.setName("Admin");
 				session.setAttribute("userObj", user);
+	            session.setAttribute("userObj", user);
+	            Cookie cookie = new Cookie("user", user.getName());
+	            cookie.setMaxAge(3600);
+	            response.addCookie(cookie);
                 response.sendRedirect("Admin");
             } else {
 				User user = dao.login(email, password);

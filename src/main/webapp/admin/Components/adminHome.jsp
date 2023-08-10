@@ -35,7 +35,13 @@
     </style>
 </head>
 <body>
-<%@include file="/admin/adminNavbar.jsp"%>
+<%@include file="/admin/Components/adminNavbar.jsp"%>
+
+<c:if test="${empty userObj}">
+    <c:redirect url="Login"/>
+</c:if>
+
+<%@include file="../../allComponents/logout_modal.jsp"%>
 
     <div class="container">
         <div class="row p-5">
@@ -76,7 +82,7 @@
             </div>
 
             <div class="col-md-3">
-                <a href="#" class="logout">
+                <a href="LogoutServlet" class="logout" data-bs-toggle="modal" data-bs-target="#Modal">
                     <div class="card">
                         <div class="card-body text-center">
                             <i class="fa-solid fa-arrow-right-from-bracket fa-3x text-danger"></i><br>

@@ -1,5 +1,8 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="com.bookasaurus.DB.DBConnect" %>
+<%@ page import="com.bookasaurus.DAO.BookDAOImpl" %>
+<%@ page import="com.bookasaurus.entity.Book" %>
+<%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.
   User: ilia
@@ -41,70 +44,45 @@
     <div class="container">
         <h2 class="text-center">Последние книги</h2>
         <div class="row">
-            <div class="col-md-3">
-                <div class="card card-hover">
-                    <div class="card-body text-center">
-                        <img alt="book" src="images/book-image.jpeg" class="img-thumblin" width="150px" height="200px">
-                        <p>Book</p>
-                        <p>Author</p>
-                        <p>Categories: New</p>
-                        <div class="card-buttons">
-                            <a href="" class="btn btn-success btn-sm ml-2"><i class="fa-solid fa-cart-shopping"></i> В корзину</a>
-                            <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
-                            <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> 300</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
+            <%
+                BookDAOImpl recentBooksDAO = new BookDAOImpl(DBConnect.getConnection());
+                List<Book> recentBooks = recentBooksDAO.getBookByCategory("recent");
+                for (Book book : recentBooks) {
+            %>
             <div class="col-md-3">
                 <div class="card card-hover">
                     <div class="card-body text-center">
-                        <img alt="book" src="images/book-image.jpeg" class="img-thumblin" width="150px" height="200px">
-                        <p>Book</p>
-                        <p>Author</p>
-                        <p>Categories: New</p>
-                        <div class="card-buttons">
-                            <a href="" class="btn btn-success btn-sm ml-2"><i class="fa-solid fa-cart-shopping"></i> В корзину</a>
-                            <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
-                            <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> 300</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        <img alt="book" src="books/<%=book.getPhoto()%>" class="img-thumblin" width="150px" height="200px">
+                        <p><%=book.getBookName()%></p>
+                        <p><%=book.getAuthor()%></p>
 
-            <div class="col-md-3">
-                <div class="card card-hover">
-                    <div class="card-body text-center">
-                        <img alt="book" src="images/book-image.jpeg" class="img-thumblin" width="150px" height="200px">
-                        <p>Book</p>
-                        <p>Author</p>
-                        <p>Categories: New</p>
-                        <div class="card-buttons">
-                            <a href="" class="btn btn-success btn-sm ml-2"><i class="fa-solid fa-cart-shopping"></i> В корзину</a>
-                            <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
-                            <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> 300</a>
-                        </div>
+                        <%
+                            if (book.getBookCategory().equals("old")) {
+                        %>
+                            <p>Категория: <%=book.getBookCategory()%></p>
+                            <div class="card-buttons">
+                                <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
+                                <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> <%=book.getPrice()%></a>
+                            </div>
+                        <%
+							} else {
+                        %>
+                            <p>Категория: <%=book.getBookCategory()%></p>
+                            <div class="card-buttons">
+                                <a href="" class="btn btn-success btn-sm ml-2"><i class="fa-solid fa-cart-shopping"></i> В корзину</a>
+                                <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
+                                <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> <%=book.getPrice()%></a>
+                            </div>
+                        <%
+							}
+                        %>
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-3">
-                <div class="card card-hover">
-                    <div class="card-body text-center">
-                        <img alt="book" src="images/book-image.jpeg" class="img-thumblin" width="150px" height="200px">
-                        <p>Book</p>
-                        <p>Author</p>
-                        <p>Categories: New</p>
-                        <div class="card-buttons">
-                            <a href="" class="btn btn-success btn-sm ml-2"><i class="fa-solid fa-cart-shopping"></i> В корзину</a>
-                            <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
-                            <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> 300</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <%
+                }
+            %>
 
         <div class="text-center mt-3">
             <a href="" class="btn btn-outline-danger btn-sm">Показать все</a>
@@ -121,70 +99,31 @@
     <div class="container">
         <h2 class="text-center">Новые книги</h2>
         <div class="row">
-            <div class="col-md-3">
-                <div class="card card-hover">
-                    <div class="card-body text-center">
-                        <img alt="book" src="images/book-image.jpeg" class="img-thumblin" width="150px" height="200px">
-                        <p>Book</p>
-                        <p>Author</p>
-                        <p>Categories: New</p>
-                        <div class="card-buttons">
-                            <a href="" class="btn btn-success btn-sm ml-2"><i class="fa-solid fa-cart-shopping"></i> В корзину</a>
-                            <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
-                            <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> 300</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
+                <%
+                    BookDAOImpl dao = new BookDAOImpl(DBConnect.getConnection());
+					List<Book> list = dao.getBookByCategory("new");
+					for (Book book : list) {
+                %>
             <div class="col-md-3">
                 <div class="card card-hover">
                     <div class="card-body text-center">
-                        <img alt="book" src="images/book-image.jpeg" class="img-thumblin" width="150px" height="200px">
-                        <p>Book</p>
-                        <p>Author</p>
-                        <p>Categories: New</p>
+                        <img alt="book" src="books/<%=book.getPhoto()%>" class="img-thumblin" width="150px" height="200px">
+                        <p><%=book.getBookName()%></p>
+                        <p><%=book.getAuthor()%></p>
+                        <p>Категория: <%=book.getBookCategory()%></p>
                         <div class="card-buttons">
                             <a href="" class="btn btn-success btn-sm ml-2"><i class="fa-solid fa-cart-shopping"></i> В корзину</a>
                             <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
-                            <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> 300</a>
+                            <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> <%=book.getPrice()%></a>
                         </div>
                     </div>
                 </div>
             </div>
+                <%
+					}
+                %>
 
-            <div class="col-md-3">
-                <div class="card card-hover">
-                    <div class="card-body text-center">
-                        <img alt="book" src="images/book-image.jpeg" class="img-thumblin" width="150px" height="200px">
-                        <p>Book</p>
-                        <p>Author</p>
-                        <p>Categories: New</p>
-                        <div class="card-buttons">
-                            <a href="" class="btn btn-success btn-sm ml-2"><i class="fa-solid fa-cart-shopping"></i> В корзину</a>
-                            <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
-                            <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> 300</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card card-hover">
-                    <div class="card-body text-center">
-                        <img alt="book" src="images/book-image.jpeg" class="img-thumblin" width="150px" height="200px">
-                        <p>Book</p>
-                        <p>Author</p>
-                        <p>Categories: New</p>
-                        <div class="card-buttons">
-                            <a href="" class="btn btn-success btn-sm ml-2"><i class="fa-solid fa-cart-shopping"></i> В корзину</a>
-                            <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
-                            <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> 300</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="text-center mt-3">
             <a href="" class="btn btn-outline-danger btn-sm">Показать все</a>
@@ -201,66 +140,28 @@
     <div class="container">
         <h2 class="text-center">Старые книги</h2>
         <div class="row">
+            <%
+                BookDAOImpl oldBooksDAO = new BookDAOImpl(DBConnect.getConnection());
+                List<Book> oldBooks = oldBooksDAO.getBookByCategory("old");
+                for (Book book : oldBooks) {
+            %>
             <div class="col-md-3">
                 <div class="card card-hover">
                     <div class="card-body text-center">
-                        <img alt="book" src="images/book-image.jpeg" class="img-thumblin" width="150px" height="200px">
-                        <p>Book</p>
-                        <p>Author</p>
-                        <p>Categories: New</p>
+                        <img alt="book" src="books/<%=book.getPhoto()%>" class="img-thumblin" width="150px" height="200px">
+                        <p><%=book.getBookName()%></p>
+                        <p><%=book.getAuthor()%></p>
+                        <p>Категория: <%=book.getBookCategory()%></p>
                         <div class="card-buttons">
                             <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
-                            <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> 300</a>
+                            <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> <%=book.getPrice()%></a>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-3">
-                <div class="card card-hover">
-                    <div class="card-body text-center">
-                        <img alt="book" src="images/book-image.jpeg" class="img-thumblin" width="150px" height="200px">
-                        <p>Book</p>
-                        <p>Author</p>
-                        <p>Categories: New</p>
-                        <div class="card-buttons">
-                            <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
-                            <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> 300</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card card-hover">
-                    <div class="card-body text-center">
-                        <img alt="book" src="images/book-image.jpeg" class="img-thumblin" width="150px" height="200px">
-                        <p>Book</p>
-                        <p>Author</p>
-                        <p>Categories: New</p>
-                        <div class="card-buttons">
-                            <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
-                            <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> 300</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card card-hover">
-                    <div class="card-body text-center">
-                        <img alt="book" src="images/book-image.jpeg" class="img-thumblin" width="150px" height="200px">
-                        <p>Book</p>
-                        <p>Author</p>
-                        <p>Categories: New</p>
-                        <div class="card-buttons text-center">
-                            <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
-                            <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> 300</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <%
+                }
+            %>
 
         <div class="text-center mt-3">
             <a href="" class="btn btn-outline-danger btn-sm">Показать все</a>

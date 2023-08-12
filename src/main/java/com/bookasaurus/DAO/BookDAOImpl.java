@@ -137,4 +137,46 @@ public class BookDAOImpl implements BookDAO {
 		}
 		return f;
 	}
+
+	@Override
+	public List<Book> getBookByCategory(String category) {
+		List<Book> list = new ArrayList<>();
+		Book book = null;
+		try {
+			String sql1 = "SELECT * FROM books WHERE book_category = ? AND status = ? ORDER BY book_id DESC";
+			String sql2 = "SELECT * FROM books WHERE status = ? ORDER BY book_id DESC";
+			String sql = (category.equals("new") || category.equals("old")) ? sql1 : sql2;
+
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			if (category.equals("new")) {
+				preparedStatement.setString(1, "new");
+				preparedStatement.setString(2, "active");
+			} else if (category.equals("old")) {
+				preparedStatement.setString(1, "old");
+				preparedStatement.setString(2, "active");
+			} else {
+				preparedStatement.setString(1, "active");
+			}
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			int count = 1;
+			while (resultSet.next() && count <= 4) {
+				book = new Book();
+				book.setBookId(resultSet.getInt(1));
+				book.setBookName(resultSet.getString(2));
+				book.setAuthor(resultSet.getString(3));
+				book.setPrice(resultSet.getString(4));
+				book.setBookCategory(resultSet.getString(5));
+				book.setStatus(resultSet.getString(6));
+				book.setPhoto(resultSet.getString(7));
+				book.setEmail(resultSet.getString(8));
+				list.add(book);
+				count++;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

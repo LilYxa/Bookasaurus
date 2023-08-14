@@ -139,7 +139,7 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 	@Override
-	public List<Book> getBookByCategory(String category) {
+	public List<Book> getBookByCategory(String category, boolean all) {
 		List<Book> list = new ArrayList<>();
 		Book book = null;
 		try {
@@ -161,7 +161,7 @@ public class BookDAOImpl implements BookDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			int count = 1;
-			while (resultSet.next() && count <= 4) {
+			while (resultSet.next() && (all || count <= 4)) {
 				book = new Book();
 				book.setBookId(resultSet.getInt(1));
 				book.setBookName(resultSet.getString(2));

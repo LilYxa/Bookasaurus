@@ -29,13 +29,13 @@
                     <a class="nav-link" aria-current="page" href="Main"><i class="fa-solid fa-house-chimney"></i> Главная</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa-solid fa-book-bookmark"></i> Недавние</a>
+                    <a class="nav-link" href="Recent"><i class="fa-solid fa-book-bookmark"></i> Недавние</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa-solid fa-book"></i> Новые</a>
+                    <a class="nav-link" href="New"><i class="fa-solid fa-book"></i> Новые</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa-solid fa-book-open"></i> Старые</a>
+                    <a class="nav-link" href="Old"><i class="fa-solid fa-book-open"></i> Старые</a>
                 </li>
             </ul>
         </div>

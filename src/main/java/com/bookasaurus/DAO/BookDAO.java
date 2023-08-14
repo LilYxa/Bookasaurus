@@ -15,5 +15,5 @@ public interface BookDAO {
 
 	public boolean deleteBook(int id);
 
-	public List<Book> getBookByCategory(String category);
+	public List<Book> getBookByCategory(String category, boolean all);
 }

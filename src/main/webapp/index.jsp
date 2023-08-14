@@ -15,23 +15,6 @@
 <html>
 <head>
     <title>Главная</title>
-    <style type="text/css">
-        .back-img {
-            height: 60vh;
-            width: 100%;
-            background: url("images/book-image.jpeg") no-repeat;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .heading {
-            color: #00796b;
-        }
-
-        .card-hover:hover {
-            background-color: #e0e0e0;
-        }
-    </style>
 </head>
 <body style="background-color: #f7f7f7">
     <%@ include file="allComponents/navbar.jsp"%>
@@ -47,7 +30,7 @@
 
             <%
                 BookDAOImpl recentBooksDAO = new BookDAOImpl(DBConnect.getConnection());
-                List<Book> recentBooks = recentBooksDAO.getBookByCategory("recent");
+                List<Book> recentBooks = recentBooksDAO.getBookByCategory("recent", false);
                 for (Book book : recentBooks) {
             %>
             <div class="col-md-3">
@@ -84,10 +67,11 @@
                 }
             %>
 
-        <div class="text-center mt-3">
-            <a href="" class="btn btn-outline-danger btn-sm">Показать все</a>
-        </div>
+            <div class="text-center mt-3">
+                <a href="Recent" class="btn btn-outline-danger btn-sm">Показать все</a>
+            </div>
 
+        </div>
     </div>
 
 <%--    Конец раздела "Недавние"--%>
@@ -102,7 +86,7 @@
 
                 <%
                     BookDAOImpl dao = new BookDAOImpl(DBConnect.getConnection());
-					List<Book> list = dao.getBookByCategory("new");
+					List<Book> list = dao.getBookByCategory("new", false);
 					for (Book book : list) {
                 %>
             <div class="col-md-3">
@@ -125,10 +109,11 @@
                 %>
 
 
-        <div class="text-center mt-3">
-            <a href="" class="btn btn-outline-danger btn-sm">Показать все</a>
-        </div>
+            <div class="text-center mt-3">
+                <a href="New" class="btn btn-outline-danger btn-sm">Показать все</a>
+            </div>
 
+        </div>
     </div>
 
     <%--    Конец раздела "Новые"--%>
@@ -142,7 +127,7 @@
         <div class="row">
             <%
                 BookDAOImpl oldBooksDAO = new BookDAOImpl(DBConnect.getConnection());
-                List<Book> oldBooks = oldBooksDAO.getBookByCategory("old");
+                List<Book> oldBooks = oldBooksDAO.getBookByCategory("old", false);
                 for (Book book : oldBooks) {
             %>
             <div class="col-md-3">
@@ -163,10 +148,11 @@
                 }
             %>
 
-        <div class="text-center mt-3">
-            <a href="" class="btn btn-outline-danger btn-sm">Показать все</a>
-        </div>
+            <div class="text-center mt-3">
+                <a href="Old" class="btn btn-outline-danger btn-sm">Показать все</a>
+            </div>
 
+        </div>
     </div>
 
     <%--    Конец раздела "Старые"--%>

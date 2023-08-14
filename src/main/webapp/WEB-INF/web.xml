@@ -85,4 +85,31 @@
         <url-pattern>/Edit_books</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Recent_books</servlet-name>
+        <jsp-file>/pages/all_recent_books.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Recent_books</servlet-name>
+        <url-pattern>/Recent</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>New_books</servlet-name>
+        <jsp-file>/pages/all_new_books.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>New_books</servlet-name>
+        <url-pattern>/New</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Old_books</servlet-name>
+        <jsp-file>/pages/all_old_books.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Old_books</servlet-name>
+        <url-pattern>/Old</url-pattern>
+    </servlet-mapping>
+
 </web-app>

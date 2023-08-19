@@ -18,6 +18,7 @@
     <%@ include file="../allComponents/navbar.jsp"%>
 
     <div class="container-fluid">
+        <h2 class="text-center">Последние книги</h2>
         <div class="row p-3">
             <%
                 BookDAOImpl recentBooksDAO = new BookDAOImpl(DBConnect.getConnection());

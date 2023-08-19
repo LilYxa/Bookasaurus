@@ -18,6 +18,7 @@
     <%@ include file="../allComponents/navbar.jsp"%>
 
     <div class="container-fluid">
+        <h2 class="text-center">Старые книги</h2>
         <div class="row p-3">
             <%
                 BookDAOImpl oldBooksDAO = new BookDAOImpl(DBConnect.getConnection());

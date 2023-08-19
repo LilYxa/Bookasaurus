@@ -111,5 +111,14 @@
         <servlet-name>Old_books</servlet-name>
         <url-pattern>/Old</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Book_details</servlet-name>
+        <jsp-file>/pages/view_book.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Book_details</servlet-name>
+        <url-pattern>/Book_details</url-pattern>
+    </servlet-mapping>
 
 </web-app>

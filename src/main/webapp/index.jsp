@@ -45,7 +45,7 @@
                         %>
                             <p>Категория: <%=book.getBookCategory()%></p>
                             <div class="card-buttons">
-                                <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
+                                <a href="Book_details?bookId=<%=book.getBookId()%>" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
                                 <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> <%=book.getPrice()%></a>
                             </div>
                         <%
@@ -54,7 +54,7 @@
                             <p>Категория: <%=book.getBookCategory()%></p>
                             <div class="card-buttons">
                                 <a href="" class="btn btn-success btn-sm ml-2"><i class="fa-solid fa-cart-shopping"></i> В корзину</a>
-                                <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
+                                <a href="Book_details?bookId=<%=book.getBookId()%>" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
                                 <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> <%=book.getPrice()%></a>
                             </div>
                         <%
@@ -98,7 +98,7 @@
                         <p>Категория: <%=book.getBookCategory()%></p>
                         <div class="card-buttons">
                             <a href="" class="btn btn-success btn-sm ml-2"><i class="fa-solid fa-cart-shopping"></i> В корзину</a>
-                            <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
+                            <a href="Book_details?bookId=<%=book.getBookId()%>" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
                             <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> <%=book.getPrice()%></a>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                         <p><%=book.getAuthor()%></p>
                         <p>Категория: <%=book.getBookCategory()%></p>
                         <div class="card-buttons">
-                            <a href="" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
+                            <a href="Book_details?bookId=<%=book.getBookId()%>" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
                             <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> <%=book.getPrice()%></a>
                         </div>
                     </div>

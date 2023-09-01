@@ -3,6 +3,7 @@
 <%@ page import="com.bookasaurus.DAO.BookDAOImpl" %>
 <%@ page import="com.bookasaurus.entity.Book" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.bookasaurus.entity.User" %>
 <%--
   Created by IntelliJ IDEA.
   User: ilia
@@ -17,12 +18,22 @@
     <title>Главная</title>
 </head>
 <body style="background-color: #f7f7f7">
+
+    <%
+        User user = (User) session.getAttribute("userObj");
+    %>
+
     <%@ include file="allComponents/navbar.jsp"%>
     <div class="container-fluid back-img">
         <h1 class="text-center pt-3 heading">Система управления электронными книгами</h1>
     </div>
 
 <%--    Начало раздела "Недавние"--%>
+
+<%--    <%--%>
+<%--        // Ссылка кнопки "Добавить в корзину" в зависимости от авторизации--%>
+<%--        String cartLink = user == null ? "Login" : "cartServlet";--%>
+<%--    %>--%>
 
     <div class="container">
         <h2 class="text-center">Последние книги</h2>
@@ -53,7 +64,19 @@
                         %>
                             <p>Категория: <%=book.getBookCategory()%></p>
                             <div class="card-buttons">
-                                <a href="" class="btn btn-success btn-sm ml-2"><i class="fa-solid fa-cart-shopping"></i> В корзину</a>
+
+                                <%
+                                    if (user == null) {
+                                %>
+                                    <a href="Login" class="btn btn-success btn-sm ml-2"><i class="fa-solid fa-cart-shopping"></i> В корзину</a>
+                                <%
+                                } else {
+                                %>
+                                    <a href="cartServlet?bookID=<%=book.getBookId()%>&&userID=<%=user.getId()%>" class="btn btn-success btn-sm ml-2"><i class="fa-solid fa-cart-shopping"></i> В корзину</a>
+                                <%
+                                    }
+                                %>
+
                                 <a href="Book_details?bookId=<%=book.getBookId()%>" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
                                 <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> <%=book.getPrice()%></a>
                             </div>
@@ -97,7 +120,19 @@
                         <p><%=book.getAuthor()%></p>
                         <p>Категория: <%=book.getBookCategory()%></p>
                         <div class="card-buttons">
-                            <a href="" class="btn btn-success btn-sm ml-2"><i class="fa-solid fa-cart-shopping"></i> В корзину</a>
+
+                            <%
+                                if (user == null) {
+                            %>
+                                <a href="Login" class="btn btn-success btn-sm ml-2"><i class="fa-solid fa-cart-shopping"></i> В корзину</a>
+                            <%
+								} else {
+                            %>
+                                <a href="cartServlet?bookID=<%=book.getBookId()%>&&userID=<%=user.getId()%>" class="btn btn-success btn-sm ml-2"><i class="fa-solid fa-cart-shopping"></i> В корзину</a>
+                            <%
+                                }
+                            %>
+
                             <a href="Book_details?bookId=<%=book.getBookId()%>" class="btn btn-info btn-sm ml-1"><i class="fa-solid fa-circle-info"></i> Детали</a>
                             <a href="" class="btn btn-light btn-sm ml-1"><i class="fa-solid fa-money-bill"></i> <%=book.getPrice()%></a>
                         </div>

@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 					Cookie cookie = new Cookie("user", user.getName());
 					cookie.setMaxAge(3600);
 					response.addCookie(cookie);
-					response.sendRedirect("Profile");
+					response.sendRedirect("Main");
 				} else {
 					session.setAttribute("failedMsg", "Проверьте правильность введенных данных!");
 					response.sendRedirect("Login");

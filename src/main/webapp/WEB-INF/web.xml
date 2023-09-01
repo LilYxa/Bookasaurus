@@ -120,5 +120,14 @@
         <servlet-name>Book_details</servlet-name>
         <url-pattern>/Book_details</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Cart</servlet-name>
+        <jsp-file>/pages/cart.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Cart</servlet-name>
+        <url-pattern>/Cart</url-pattern>
+    </servlet-mapping>
 
 </web-app>

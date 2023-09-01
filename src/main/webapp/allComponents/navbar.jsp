@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page isELIgnored="false" %>
+
 <div class="container-fluid" style="background-color: #b2dfdb">
     <div class="header row">
         <div class="col-md-2">
@@ -14,12 +17,27 @@
                 <button class="btn btn-success" type="submit">Найти</button>
             </form>
         </div>
-        <div class="col-md-4 text-end authSection">
-            <a class="btn btn-success loginBtn" href="Login"><i class="fa-solid fa-arrow-right-from-bracket"></i> Войти</a>
-            <a class="btn btn-success registerBtn" href="Register"><i class="fa-solid fa-user-plus"></i> Зарегистрироваться</a>
-        </div>
+
+        <c:if test="${not empty userObj}">
+            <div class="col-md-4 text-end authSection">
+                <a href="Cart" class="align-middle text-light"><i class="fa-solid fa-cart-shopping fa-2x"></i></a>
+                <a class="btn btn-success loginBtn" href="Profile"><i class="fa-solid fa-user"></i> ${userObj.name}</a>
+<%--                <a class="btn btn-danger registerBtn" href="LogoutServlet"><i class="fa-solid fa-right-from-bracket"></i> Выйти</a>--%>
+                <a class="btn btn-danger registerBtn" data-bs-toggle="modal" data-bs-target="#Modal"><i class="fa-solid fa-right-from-bracket"></i> Выйти</a>
+            </div>
+        </c:if>
+
+        <c:if test="${empty userObj}">
+            <div class="col-md-4 text-end authSection">
+                <a class="btn btn-success loginBtn" href="Login"><i class="fa-solid fa-arrow-right-from-bracket"></i> Войти</a>
+                <a class="btn btn-success registerBtn" href="Register"><i class="fa-solid fa-user-plus"></i> Зарегистрироваться</a>
+            </div>
+        </c:if>
+
     </div>
 </div>
+
+<%@include file="../allComponents/logout_modal.jsp"%>
 
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #26a69a">
     <div class="container-fluid">

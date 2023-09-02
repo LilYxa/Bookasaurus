@@ -20,9 +20,8 @@
 
         <c:if test="${not empty userObj}">
             <div class="col-md-4 text-end authSection">
-                <a href="Cart" class="align-middle text-light"><i class="fa-solid fa-cart-shopping fa-2x"></i></a>
+                <a href="Cart" class="align-middle text-light position-relative me-2"><i class="fa-solid fa-cart-shopping fa-2x"></i><span class="position-absolute top-n1 start-100 translate-middle badge rounded-circle bg-danger">3</span></a>
                 <a class="btn btn-success loginBtn" href="Profile"><i class="fa-solid fa-user"></i> ${userObj.name}</a>
-<%--                <a class="btn btn-danger registerBtn" href="LogoutServlet"><i class="fa-solid fa-right-from-bracket"></i> Выйти</a>--%>
                 <a class="btn btn-danger registerBtn" data-bs-toggle="modal" data-bs-target="#Modal"><i class="fa-solid fa-right-from-bracket"></i> Выйти</a>
             </div>
         </c:if>

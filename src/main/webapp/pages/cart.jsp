@@ -1,4 +1,8 @@
-<%--
+<%@ page import="com.bookasaurus.DAO.CartDAOImpl" %>
+<%@ page import="com.bookasaurus.DB.DBConnect" %>
+<%@ page import="com.bookasaurus.entity.User" %>
+<%@ page import="com.bookasaurus.entity.Cart" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: ilia
   Date: 01.09.2023
@@ -6,6 +10,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page isELIgnored="false" %>
 <html>
 <head>
     <title>Корзина</title>
@@ -13,6 +19,21 @@
 </head>
 <body style="background-color: #f0f1f2">
     <%@include file="/allComponents/navbar.jsp"%>
+
+    <c:if test="${empty userObj}">
+        <c:redirect url = "Login"></c:redirect>
+    </c:if>
+
+    <c:if test="${not empty failedMsg}">
+        <div class="alert alert-danger">${failedMsg}</div>
+        <c:remove var="failedMsg" scope="session"/>
+    </c:if>
+
+    <c:if test="${not empty successMsg}">
+        <div class="alert alert-success text-center">${successMsg}</div>
+        <c:remove var="successMsg" scope="session"/>
+    </c:if>
+
     <div class="container">
         <div class="row p-3">
             <div class="col-md-6">
@@ -22,29 +43,41 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Имя</th>
-                                <th scope="col">Фамилия</th>
-                                <th scope="col">Обращение</th>
+                                <th scope="col">Название книги</th>
+                                <th scope="col">Автор</th>
+                                <th scope="col">Цена</th>
+                                <th scope="col">Действие</th>
                             </tr>
                             </thead>
                             <tbody>
+
+                            <%
+                                User user = (User) session.getAttribute("userObj");
+
+                                CartDAOImpl dao = new CartDAOImpl(DBConnect.getConnection());
+								List<Cart> cart = dao.getBookByUser(user.getId());
+								Double totalPrice = 0.0;
+
+                                for (Cart c : cart) {
+									totalPrice = c.getTotalPrice();
+                            %>
+                                <tr>
+                                    <th scope="row"><%=c.getBookName()%></th>
+                                    <td><%=c.getAuthor()%></td>
+                                    <td><%=c.getPrice()%></td>
+                                    <td>
+                                        <a href="RemoveBookFromCart?bookID=<%=c.getBookID()%>&&userID=<%=c.getUserID()%>" class="btn btn-sm btn-danger">Удалить</a>
+                                    </td>
+                                </tr>
+                            <%
+                                }
+                            %>
+
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
+                                <td>Итого</td>
+                                <td></td>
+                                <td></td>
+                                <td><%=totalPrice%></td>
                             </tr>
                             </tbody>
                         </table>
@@ -60,31 +93,31 @@
                             <div class="row">
                                 <div class="mb-3 col-md-6">
                                     <label for="name">Имя</label>
-                                    <input id="name" type="text" class="form-control" value="">
+                                    <input id="name" type="text" class="form-control" value="<%=user.getName()%>" readonly>
                                 </div>
 
                                 <div class="mb-3 col-md-6">
                                     <label for="email">Электронная почта</label>
-                                    <input id="email" type="email" class="form-control" value="">
+                                    <input id="email" type="email" class="form-control" value="<%=user.getEmail()%>" readonly>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="mb-3 col-md-6">
                                     <label for="phoneNumber">Номер телефона</label>
-                                    <input id="phoneNumber" type="number" class="form-control" >
+                                    <input id="phoneNumber" type="tel" class="form-control" >
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="address">Адрес</label>
-                                    <input id="address" type="text" class="form-control">
+                                    <label for="city">Город</label>
+                                    <input id="city" type="text" class="form-control">
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="mb-3 col-md-6">
-                                    <label for="city">Город</label>
-                                    <input id="city" type="text" class="form-control">
+                                    <label for="address">Адрес</label>
+                                    <input id="address" type="text" class="form-control">
                                 </div>
 
                                 <div class="mb-3 col-md-6">

@@ -16,6 +16,7 @@
 <html>
 <head>
     <title>Главная</title>
+    <link rel="shortcut icon" type="image/jpg" href="images/favicon.ico"/>
 </head>
 <body style="background-color: #f7f7f7">
 

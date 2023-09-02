@@ -1,9 +1,13 @@
 package com.bookasaurus.DAO;
 
+import com.bookasaurus.entity.Book;
 import com.bookasaurus.entity.Cart;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CartDAOImpl implements CartDAO {
 
@@ -37,5 +41,58 @@ public class CartDAOImpl implements CartDAO {
 		}
 
 		return flag;
+	}
+
+	@Override
+	public List<Cart> getBookByUser(int userID) {
+		List<Cart> list = new ArrayList<>();
+		Cart cart = null;
+		double totalPrice = 0;
+
+		try {
+			String sql = "SELECT * FROM cart WHERE user_id = ?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, userID);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				cart = new Cart();
+				cart.setId(resultSet.getInt(1));
+				cart.setBookID(resultSet.getInt(2));
+				cart.setUserID(resultSet.getInt(3));
+				cart.setBookName(resultSet.getString(4));
+				cart.setAuthor(resultSet.getString(5));
+				cart.setPrice(resultSet.getDouble(6));
+
+				totalPrice += resultSet.getDouble(7);
+				cart.setTotalPrice(totalPrice);
+
+				list.add(cart);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@Override
+	public boolean removeBook(int bookID, int userID) {
+		boolean f = false;
+
+		try {
+			String sql = "DELETE FROM cart WHERE book_id = ? AND user_id = ?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, bookID);
+			preparedStatement.setInt(2, userID);
+
+			int res = preparedStatement.executeUpdate();
+			if (res == 1) {
+				f = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return f;
 	}
 }

@@ -109,21 +109,26 @@
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="city">Город</label>
-                                    <input id="city" type="text" class="form-control">
+                                    <label for="region">Регион</label>
+                                    <input id="region" type="text" class="form-control">
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="mb-3 col-md-6">
-                                    <label for="address">Адрес</label>
-                                    <input id="address" type="text" class="form-control">
+                                    <label for="city">Город</label>
+                                    <input id="city" type="text" class="form-control">
                                 </div>
 
                                 <div class="mb-3 col-md-6">
-                                    <label for="zip">Индекс</label>
-                                    <input id="zip" type="text" class="form-control">
+                                    <label for="address">Адрес</label>
+                                    <input id="address" type="text" class="form-control">
                                 </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="zip">Индекс</label>
+                                <input id="zip" type="text" class="form-control">
                             </div>
 
                             <div class="mb-3">
@@ -146,5 +151,9 @@
 
         </div>
     </div>
+
+    <footer>
+        <%@include file="../allComponents/footer.jsp"%>
+    </footer>
 </body>
 </html>

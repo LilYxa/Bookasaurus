@@ -130,4 +130,57 @@
         <url-pattern>/Cart</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Settings</servlet-name>
+        <jsp-file>/pages/settings.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Settings</servlet-name>
+        <url-pattern>/Settings</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SellBook</servlet-name>
+        <jsp-file>/pages/settings_pages/sell_book.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SellBook</servlet-name>
+        <url-pattern>/Sell_book</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditProfile</servlet-name>
+        <jsp-file>/pages/settings_pages/edit_profile.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditProfile</servlet-name>
+        <url-pattern>/Edit_profile</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserAddress</servlet-name>
+        <jsp-file>/pages/settings_pages/user_address.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserAddress</servlet-name>
+        <url-pattern>/User_address</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MyOrder</servlet-name>
+        <jsp-file>/pages/settings_pages/order.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyOrder</servlet-name>
+        <url-pattern>/My_order</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ContactUs</servlet-name>
+        <jsp-file>/pages/settings_pages/contact_us.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContactUs</servlet-name>
+        <url-pattern>/Contact_Us</url-pattern>
+    </servlet-mapping>
 </web-app>

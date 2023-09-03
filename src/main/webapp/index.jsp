@@ -26,7 +26,7 @@
 
     <%@ include file="allComponents/navbar.jsp"%>
     <div class="container-fluid back-img">
-        <h1 class="text-center pt-3 heading">Система управления электронными книгами</h1>
+        <h1 class="text-center pt-3 heading">Электронная система управления книгами</h1>
     </div>
 
 <%--    Начало раздела "Недавние"--%>

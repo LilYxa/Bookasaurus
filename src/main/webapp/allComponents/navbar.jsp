@@ -1,3 +1,8 @@
+<%@ page import="com.bookasaurus.DAO.CartDAOImpl" %>
+<%@ page import="com.bookasaurus.DB.DBConnect" %>
+<%@ page import="com.bookasaurus.entity.Cart" %>
+<%@ page import="com.bookasaurus.entity.User" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -19,8 +24,33 @@
         </div>
 
         <c:if test="${not empty userObj}">
+
+            <%
+                User u = (User) session.getAttribute("userObj");
+
+                CartDAOImpl DAO = new CartDAOImpl(DBConnect.getConnection());
+                List<Cart> c = DAO.getBookByUser(u.getId());
+            %>
+
             <div class="col-md-4 text-end authSection">
-                <a href="Cart" class="align-middle text-light position-relative me-2"><i class="fa-solid fa-cart-shopping fa-2x"></i><span class="position-absolute top-n1 start-100 translate-middle badge rounded-circle bg-danger">3</span></a>
+                <%
+                    if (c.size() == 0) {
+                %>
+                <a href="Cart" class="align-middle text-light position-relative me-2" style="text-decoration: none">
+                    <i class="fa-solid fa-cart-shopping fa-2x"></i>
+                </a>
+                <%
+                } else {
+                %>
+                <a href="Cart" class="align-middle text-light position-relative me-2" style="text-decoration: none">
+                    <i class="fa-solid fa-cart-shopping fa-2x"></i>
+                    <span class="position-absolute top-n1 start-100 translate-middle badge rounded-circle bg-danger"><%=c.size()%>
+                    </span>
+                </a>
+                <%
+                    }
+                %>
+<%--                <a href="Cart" class="align-middle text-light position-relative me-2"><i class="fa-solid fa-cart-shopping fa-2x"></i><span class="position-absolute top-n1 start-100 translate-middle badge rounded-circle bg-danger"><%=c.size()%></span></a>--%>
                 <a class="btn btn-success loginBtn" href="Profile"><i class="fa-solid fa-user"></i> ${userObj.name}</a>
                 <a class="btn btn-danger registerBtn" data-bs-toggle="modal" data-bs-target="#Modal"><i class="fa-solid fa-right-from-bracket"></i> Выйти</a>
             </div>
@@ -57,7 +87,7 @@
             </ul>
         </div>
         <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-light my-2 my-sm-0"><i class="fa-solid fa-gear fa-spin"></i> Настройки</button>
+            <a href="Settings" class="btn btn-light my-2 my-sm-0"><i class="fa-solid fa-gear fa-spin"></i> Настройки</a>
             <button class="btn btn-light my-2 my-sm-0"><i class="fa-solid fa-address-book"></i> Связаться с нами</button>
         </form>
     </div>
